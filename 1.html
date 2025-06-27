@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>تأثيرات خلفية وأزرار</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(45deg, #ff6b6b, #f7b731, #48c9b0);
+      background-size: 400% 400%;
+      animation: gradientAnimation 10s ease infinite;
+      position: relative;
+      overflow: hidden;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    @keyframes gradientAnimation {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .bubble {
+      position: absolute;
+      background-color: rgba(255, 255, 255, 0.5);
+      border-radius: 50%;
+      animation: bubbleAnimation 10s infinite;
+      z-index: 0;
+    }
+
+    @keyframes bubbleAnimation {
+      0% { transform: translateY(100vh) scale(0.5); opacity: 1; }
+      100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+    }
+
+    .bubble:nth-child(1) { width: 50px; height: 50px; left: 20%; animation-duration: 12s; }
+    .bubble:nth-child(2) { width: 60px; height: 60px; left: 40%; animation-duration: 14s; animation-delay: 2s; }
+    .bubble:nth-child(3) { width: 70px; height: 70px; left: 60%; animation-duration: 18s; animation-delay: 4s; }
+    .bubble:nth-child(4) { width: 40px; height: 40px; left: 80%; animation-duration: 16s; animation-delay: 6s; }
+
+    .title {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      z-index: 1;
+      text-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+
+    .description {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin-bottom: 30px;
+      z-index: 1;
+      text-shadow: 0 0 5px rgba(0,0,0,0.4);
+    }
+
+    .button-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      max-width: 90vw;
+      z-index: 1;
+      position: relative;
+    }
+
+    .btn {
+      padding: 1rem 1.5rem;
+      border: none;
+      border-radius: 30px;
+      font-size: 1.2rem;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn i {
+      font-size: 1.5rem;
+      transition: transform 0.3s ease;
+    }
+
+    .btn:hover i {
+      transform: rotate(15deg) scale(1.1);
+    }
+
+    .btn-youtube { background-color: #FF0000; }
+    .btn-facebook { background-color: #3b5998; }
+    .btn-twitter { background-color: #1DA1F2; }
+    .btn-instagram { background: linear-gradient(45deg, #E1306C, #F58529, #E4405F); }
+    .btn-tiktok { background-color: #000000; }
+    .btn-gmail { background-color: #D44638; }
+
+    #dont-click-btn {
+      background-color: #555;
+      position: relative;
+      transition: top 0.3s ease, left 0.3s ease;
+    }
+
+    @media (max-width: 600px) {
+      .btn {
+        font-size: 1rem;
+        padding: 0.8rem 1.2rem;
+      }
+      .title {
+        font-size: 1.8rem;
+      }
+      .description {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- الفقاعات -->
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+
+  <h1 class="title">مرحباً بك في صفحتي الاجتماعية!</h1>
+  <p class="description">يمكنك زيارة حساباتي على مختلف الشبكات الاجتماعية بالنقر على الأزرار أدناه. جرب زر "لا تضغط علي" لكن كن حذراً!</p>
+
+  <div class="button-container">
+    <a href="https://youtube.com/@glucose_yt_7" class="btn btn-youtube" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+    <a href="https://www.facebook.com" class="btn btn-facebook" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
+    <a href="https://www.twitter.com" class="btn btn-twitter" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
+    <a href="https://www.instagram.com/glucose_yt_" class="btn btn-instagram" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+    <a href="https://www.tiktok.com/@only_exo7" class="btn btn-tiktok" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
+    <a href="mailto:fatehallahfatehallah240@gmail.com" class="btn btn-gmail" target="_blank"><i class="fas fa-envelope"></i> Gmail</a>
+    <button id="dont-click-btn" class="btn">لا تضغط علي</button>
+  </div>
+
+  <script>
+    const btn = document.getElementById("dont-click-btn");
+    let canMove = true;
+
+    function getRandomPosition() {
+      const maxX = window.innerWidth - btn.offsetWidth;
+      const maxY = window.innerHeight - btn.offsetHeight;
+      const randX = Math.random() * maxX;
+      const randY = Math.random() * maxY;
+      return { x: randX, y: randY };
+    }
+
+    btn.addEventListener("mouseenter", () => {
+      if (!canMove) return;
+      canMove = false;
+      const { x, y } = getRandomPosition();
+      btn.style.position = "absolute";
+      btn.style.left = `${x}px`;
+      btn.style.top = `${y}px`;
+      setTimeout(() => {
+        canMove = true;
+      }, 400);
+    });
+
+    btn.addEventListener("click", () => {
+      window.location.href = "trolled.html";
+    });
+  </script>
+</body>
+</html>
