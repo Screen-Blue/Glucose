@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>تأثيرات خلفية وأزرار</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      font-family: sans-serif;
+      color: white;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(45deg, #ff6b6b, #f7b731, #48c9b0);
+      background-size: 400% 400%;
+      animation: gradientAnimation 10s ease infinite;
+      position: relative;
+      padding: 20px;
+    }
+
+    @keyframes gradientAnimation {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .bubble-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .bubble {
+      position: absolute;
+      background-color: rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      animation: bubbleAnimation 10s infinite;
+    }
+
+    @keyframes bubbleAnimation {
+      0% { transform: translateY(100vh) scale(0.5); opacity: 1; }
+      100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+    }
+
+    .bubble:nth-child(1) { width: 50px; height: 50px; left: 20%; animation-duration: 12s; }
+    .bubble:nth-child(2) { width: 60px; height: 60px; left: 40%; animation-duration: 14s; animation-delay: 2s; }
+    .bubble:nth-child(3) { width: 70px; height: 70px; left: 60%; animation-duration: 18s; animation-delay: 4s; }
+    .bubble:nth-child(4) { width: 40px; height: 40px; left: 80%; animation-duration: 16s; animation-delay: 6s; }
+
+    .title {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      z-index: 1;
+      text-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+
+    .description {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin-bottom: 30px;
+      z-index: 1;
+      text-shadow: 0 0 5px rgba(0,0,0,0.4);
+    }
+
+    .button-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      max-width: 90vw;
+      z-index: 1;
+      position: relative;
+    }
+
+    .btn {
+      padding: 1rem 1.5rem;
+      border: none;
+      border-radius: 30px;
+      font-size: 1.2rem;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-decoration: none;
+      white-space: nowrap;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      position: relative;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn i {
+      font-size: 1.5rem;
+      transition: transform 0.3s ease;
+    }
+
+    .btn:hover i {
+      transform: rotate(15deg) scale(1.1);
+    }
+
+    .btn-youtube { background-color: #FF0000; }
+    .btn-facebook { background-color: #3b5998; }
+    .btn-twitter { background-color: #1DA1F2; }
+    .btn-instagram { background: linear-gradient(45deg, #E1306C, #F58529, #E4405F); }
+    .btn-tiktok { background-color: #000000; }
+    .btn-gmail { background-color: #D44638; }
+    .btn-dontclick { background-color: #555; }
+
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      background: #222;
+      padding: 30px;
+      color: #fff;
+      border-radius: 15px;
+      box-shadow: 0 0 25px rgba(0,0,0,0.5);
+      z-index: 999;
+      transition: transform 0.3s ease;
+    }
+
+    .popup.show {
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    @media (max-width: 600px) {
+      .btn {
+        font-size: 1rem;
+        padding: 0.8rem 1.2rem;
+      }
+      .title {
+        font-size: 1.8rem;
+      }
+      .description {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- فقاعات الخلفية -->
+  <div class="bubble-wrapper">
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+  </div>
+
+  <h1 class="title">مرحباً بك في صفحتي الاجتماعية!</h1>
+  <p class="description">يمكنك زيارة حساباتي على مختلف الشبكات الاجتماعية بالنقر على الأزرار أدناه. جرب زر "لا تضغط علي" لكن كن حذراً!</p>
+
+  <div class="button-container">
+    <a href="https://youtube.com/@glucose_yt_7" class="btn btn-youtube" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+    <a href="https://www.facebook.com" class="btn btn-facebook" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
+    <a href="https://www.twitter.com" class="btn btn-twitter" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
+    <a href="https://www.instagram.com/glucose_yt_" class="btn btn-instagram" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+    <a href="https://www.tiktok.com/@only_exo7" class="btn btn-tiktok" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
+    <a href="mailto:fatehallahfatehallah240@gmail.com" class="btn btn-gmail" target="_blank"><i class="fas fa-envelope"></i> Gmail</a>
+  </div>
+
+  <!-- الزر في الأسفل -->
+  <div style="margin-top: 30px;">
+    <button id="dont-click-btn" class="btn btn-dontclick">لا تضغط علي</button>
+  </div>
+
+  <!-- النافذة المنبثقة -->
+  <div class="popup" id="popup">
+    <h2>😂 تم خداعك!</h2>
+    <p>قلت لك لا تضغط! 😈</p>
+    <button id="close-popup" style="margin-top: 15px; padding: 10px 20px; background: crimson; border: none; color: white; border-radius: 10px; cursor: pointer;">
+      إغلاق
+    </button>
+  </div>
+
+  <script>
+    const btn = document.getElementById("dont-click-btn");
+    const popup = document.getElementById("popup");
+    const closeBtn = document.getElementById("close-popup");
+    let canMove = true;
+
+    // الحركة جهة عشوائية صغيرة
+    let offsetX = 0;
+    let offsetY = 0;
+
+    function moveSlightlyRandom() {
+      const step = 40;
+      const directions = [
+        { x: step, y: 0 },
+        { x: -step, y: 0 },
+        { x: 0, y: step },
+        { x: 0, y: -step }
+      ];
+      const choice = directions[Math.floor(Math.random() * directions.length)];
+      offsetX += choice.x;
+      offsetY += choice.y;
+      btn.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+    }
+
+    btn.addEventListener("mouseenter", () => {
+      if (!canMove) return;
+      canMove = false;
+      moveSlightlyRandom();
+      setTimeout(() => {
+        canMove = true;
+      }, 300);
+    });
+
+    btn.addEventListener("click", () => {
+      popup.classList.add("show");
+    });
+
+    // إغلاق النافذة عند الضغط على الزر
+    closeBtn.addEventListener("click", () => {
+      popup.classList.remove("show");
+    });
+
+    // إغلاق النافذة عند الضغط خارجها
+    window.addEventListener("click", function(e) {
+      if (e.target === popup) {
+        popup.classList.remove("show");
+      }
+    });
+  </script>
+</body>
+</html>
